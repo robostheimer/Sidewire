@@ -1,0 +1,71 @@
+<div ng-include="'partials/search_buttons.html'"></div>
+
+
+<div class="container">
+	<!--------List View-------------->
+	<div id="movingBallG" ng-show="loading==true">
+		<div class="movingBallLineG"></div>
+		<div id="movingBallG_1" class="movingBallG"></div>
+	</div>
+	<section id="nofilter-list"  class="stage" >
+		<div id= "unfiltered-table" ng-hide="loading==true" >
+
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Id</th>
+						<th>FeedUrl</th>
+						<th>Domain</th>
+						<th>Parser-Class</th>
+						<th>CDN-Domains</th>
+						<th>Whitelist</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr  ng-repeat = "item in data.active">
+
+						<td ng-hide="item.Edit==true;" class="sources">{{item.name}} </td>
+						<td ng-hide="item.Edit==true;" class="sources">{{item.id}}</td>
+						<td ng-hide="item.Edit==true;" class="sources url">{{item.feed_url}}</td>
+						<td ng-hide="item.Edit==true;"  class="sources" >{{item.domain}}</td>
+						<td ng-hide="item.Edit==true;" class="sources" >{{item.parser_class}}</td>
+						<td ng-hide="item.Edit==true;" class="sources" >{{item.cdn_domains.toString()}}</td>
+						<td ng-hide="item.Edit==true;"  class="sources whitelist" >{{item.whitelist}}
+						<div ng-hide="showEditIcons==false">
+							<span class="icon-pencil2" ng-click="item.Edit=true"></span>
+							<span class="icon-bin2"></span>
+
+						</div></td>
+
+						<td ng-show="item.Edit==true" class="sources" >
+						<input type="text" placeholder="Name" value="{{item.name}}"/>
+						</td>
+						<td ng-show="item.Edit==true;" class="sources">{{item.id}}</td>
+						<td ng-show="item.Edit==true" class="sources">
+						<input type="url" placeholder="Feed Url"value="{{item.feed_url}}" required/>
+						</td>
+						<td ng-show="item.Edit==true" class="sources">
+						<input type="text" placeholder="Domain" value="{{item.domain}}"/>
+						</td>
+						<td ng-show="item.Edit==true" class="sources">
+						<input type="text" placeholder="Parser Class" value="{{item.parser_class}}"/>
+						</td>
+						<td ng-show="item.Edit==true" class="sources">
+						<input type="text" placeholder="CDN-Domains" value="{{item.cdn_domains.toString()}}"/>
+						</td>
+						<td ng-show="item.Edit==true" class="whitelist ">
+						<input type="text" placeholder="Whitelist" pattern="true|True|false|False|T|F" value="{{item.whitelist}}"/>
+						<div class="show_icons">
+							<span class="icon-floppy-disk" ng-click="validate(item.feed_url)"></span><span class="icon-cancel-circle" ng-click="item.Edit=false"></span>
+						</div></td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</section>
+
+</div>

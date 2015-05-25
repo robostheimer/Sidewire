@@ -1,0 +1,48 @@
+<div class="internal_search">
+	<div  tabindex="150" class="search" aria-hidden="false" data-icon="Z" tabindex="153">
+		<span class="icon-search"></span>
+
+	</div>
+	<form id="search" name="search" class="ng-pristine ng-valid">
+		<label style="visibility:hidden">Search Timeline</label>
+		<input tabindex="150" type="text" name="search" value="" placeholder="Search" id="search" ng-model="query" tabindex="152" ng-change="filterData(query,datatype);" ng-delay="100">
+	</form>
+
+	<div class="clear"></div>
+	<div>
+		<div  ng-repeat ="item in sortButtons" class="view {{item.state}}" ng-click="controlSort(item.type,datatype)" >
+			<span class="icon-{{item.name}}"></span>
+		</div>
+		<div  ng-repeat ="item in viewButtons" class="view {{item.state}}" ng-click="controlViews(item.type)" >
+			<a href="{{item.href}}"<span class="icon-{{item.name}}"></span></a>
+		</div>
+		
+	</div>
+
+</div>
+<div class="buttons_holder"  >
+	<div ng-repeat="item in navButtons"  class="button {{item.state}}" ng-click="changeState(item.name)">
+		<a href="{{item.href}}">{{item.name}}</a>
+	</div>
+	<div class="action_buttons"  download-button data="{{data}}">
+	</div>
+	<div class="action_buttons"  ng-click ="runPost(data)">
+		<span class="icon-folder-upload"></span>
+	</div>
+	<div class="action_buttons"  ng-click="codeToggle()">
+		<span class="icon-embed"></span>
+		
+	</div>
+	<div ng-show="showJSON==true" class="code" >
+			<div class="close" ng-click="codeToggle()" ><span class="icon-cancel-circle" ></span></div>
+			<div class="close" download-button data={{data}}></div>
+			<pre>
+				{{data}}
+			</pre>
+			
+		</div>
+	<div class="action_buttons"  ng-click="addItem()">
+		<span class="icon-plus"></span>
+	</div>
+
+</div>

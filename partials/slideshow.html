@@ -1,0 +1,34 @@
+		
+		<ul class="slideshow" style="overflow:hidden; padding:0; margin:0">
+			
+			<li class="slideshow animate-show" ng-repeat="slide in slides" ng-hide="slide.visible==false;">
+				<section id="loader" ng-show="slide.isLoading==true" style="width:111px; margin-left:auto; margin-right:auto;;height:107px; position: relative; background-repeat:no-repeat; background-image:url(/images/NOAA-Logo.gif);  margin-top: 20%;" /></section>
+				<div feature-image="{{slide.src}}?w={{windowWidth}}" color="{{slide.background_color}}" ng-hide="slide.isLoading==true">
+	 				<div style="height:100%">
+		 				<div class="text {{slide.txt_pos[0]}} {{slide.txt_pos[1]}} txtyellow">{{slide.caption}}<br><a href="/#{{slide.hash}}" class="yellow txtwhite">Read More <span class="chevron">»»</span></a></div>
+		 				<h1 class="{{slide.spot_pos[0]}} {{slide.spot_pos[1]}} {{slide.tas_color}} top txtwhite">
+		 					<div>NOAA Teacher at Sea</div>
+		 					<div class="{{slide.spot_color}}  {{slide.spot_pos[1]}} larger">{{name}}</div>
+		 				</h1>
+		 				<div class="clear"></div>
+		 				<p  class="{{slide.txt_pos[0]}} {{slide.spot_pos[1]}} yellow top"><i>{{tagline}}</i></p>
+		 			
+	 			</div>
+ 	</div>
+			</li>
+			
+			
+		</ul>
+		<div id="slidesnav">
+				<ul class="slides-nav">
+					<li style="border:none; margin-right:3px; background:none;" ng-click="prev()"><a style="color:#ECBD00;font-weight:bold" > ««</a></li>
+					
+					
+					<li tabindex="106" ng-click="playPause()" ng-enter="playPause()" id="play" ng-hide="playhider==true" style="color:#ECBD00;font-weight:bold; background:none; border:none"> <a><img ng-enter="playPause()" width="20" height="20" src="/images/play.gif" style="border:none;" alt="play"></a></li>
+					<li tabindex="106" id="pause" ng-click="playPause()" ng-enter="playPause()" id="play" ng-hide="playhider==false" style="color:#ECBD00;font-weight:bold; background:none; border:none" ><a  style="color:#ECBD00;font-weight:bold"><img ng-enter="playPause()" height="20" width="20" style="border:none;" src="/images/pause.gif" alt="pause"></a></li>
+					
+					<li style="border:none; margin-left:3px;background:none;" ng-click="next()"><a  style="color:#ECBD00;font-weight:bold"> »»</a></li>
+				</ul>
+			</div>
+<!--<div style="background-blend-mode: screen; background-image: url(/images/bg7.png); background-color: rgba(0, 87, 165, .5); background-size: cover;width:100%;height:100vh" background-repeat:repeat"></div>-->
+<div class="clear"></div>
