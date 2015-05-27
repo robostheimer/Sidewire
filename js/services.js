@@ -261,7 +261,7 @@ Sidewire.factory('SidewireData',['$http', 'LS','$q','$rootScope','$timeout', fun
 		}; 	
 }]);
 
-Sidewire.factory('Buttons', ['$q','HelperFunctions',function($q, HelperFunctions){
+Sidewire.factory('Buttons', ['$q',function($q){
 	return {
 		changeButton:function(nav, type)
 		{
@@ -288,12 +288,12 @@ Sidewire.factory('Buttons', ['$q','HelperFunctions',function($q, HelperFunctions
 			if(asc_or_dsc == 'asc')
 			{
 				//$scope.alldata.fullArr=$scope.alldata_all
-				data=HelperFunctions.SortObjAsc(parameter.toLowerCase(),data, str_or_num, 'feed_url');
+				data=data.SortObjAsc(parameter.toLowerCase(), str_or_num, 'feed_url');
 				
 				
 			}else{
 				//$scope.alldata.fullArr=$scope.alldata_all
-				data=HelperFunctions.SortObjDsc(parameter.toLowerCase(),data, str_or_num, 'feed_url');
+				data=data.SortObjDsc(parameter.toLowerCase(), str_or_num, 'feed_url');
 				
 			}
 			deferred.resolve(data);
@@ -301,29 +301,25 @@ Sidewire.factory('Buttons', ['$q','HelperFunctions',function($q, HelperFunctions
 			
 			
 		},
-		addRow:function(type)
-		{
-			/////////type should be sources or contexts
-			
-		}
+		
 	};	
 }]);
 
-Sidewire.factory('BrowseSearch', ['HelperFunctions','$q', function(HelperFunctions, $q){
+Sidewire.factory('BrowseSearch', ['$q', function($q){
 	return{
 		
 		SearchData :function(arr, query, checkDupProperty)
 		{
 		var deferred = $q.defer();
 		var searchArr={arr:[], fullArr:[]};
-		var searchArr=HelperFunctions.searchDataMatch(arr,query, checkDupProperty);
+		var searchArr=arr.searchDataMatch(query, checkDupProperty);
 		deferred.resolve(searchArr);
 		return deferred.promise;
 		}
 	};	
 }]);
 
-Sidewire.factory('Validate', ['HelperFunctions','$q', function(HelperFunctions, $q){
+Sidewire.factory('Validate', ['$q', function($q){
 	return{
 		
 		isEmpty :function(obj)
@@ -353,8 +349,8 @@ Sidewire.factory('Validate', ['HelperFunctions','$q', function(HelperFunctions, 
 }]);
 
 
-Sidewire.factory('LS', ['$http', '$routeParams', '$location', '$rootScope', '$sce','HelperFunctions',
-function($http, $routeParams, $location, $rootScope, $sce, HelperFunctions) {
+Sidewire.factory('LS', ['$http', '$routeParams', '$location', '$rootScope', '$sce',
+function($http, $routeParams, $location, $rootScope, $sce) {
 	return {
 		
 		

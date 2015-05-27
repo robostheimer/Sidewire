@@ -1,14 +1,14 @@
-<div ng-include="'partials/search_buttons.html'"></div>
+<section ng-include="'partials/search_buttons.html'"></section>
 
 
-<div class="container" id="container">
+<section class="container" id="container">
 	<!--------List View-------------->
-	<div id="movingBallG" ng-show="loading==true">
-		<div class="movingBallLineG"></div>
-		<div id="movingBallG_1" class="movingBallG"></div>
-	</div>
+	<section id="movingBallG" ng-show="loading==true">
+		<section class="movingBallLineG"></section>
+		<section id="movingBallG_1" class="movingBallG"></section>
+	</section>
 	<section id="nofilter-list"  class="stage" >
-		<div id= "unfiltered-table" ng-hide="loading==true" id="row" >
+		<section id= "unfiltered-table" ng-hide="loading==true" id="row" >
 
 			<table>
 				<thead>
@@ -30,7 +30,7 @@
 						</td>
 						
 						<td  class="sources">
-							<input type="text" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-change="checkInput(item.feed_url, $index, adder.sources)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
+							<input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-change="checkInput(item.feed_url, $index, adder.sources)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
 						</td>
 						<td  class="sources">
 						<input type="text" ng-model="item.domain" placeholder="Domain" value="{{item.domain}}"/>
@@ -45,10 +45,10 @@
 							
 								<span class="icon-checkbox-unchecked blue" ng-hide="item.whitelist==true" ng-model="item.whitelist"  ng-click="changeCheck('whitelist', $index, adder.sources)"></span>
 								<span class="icon-checkbox-checked blue" ng-hide="item.whitelist==false"  ng-model="item.whitelist" ng-click="changeCheck('whitelist', $index, adder.sources)"></span>
-						<div class="show_icons">
+						<section class="show_icons">
 							<span class="icon-floppy-disk" ng-click="savItem($index, 'new')"></span>
 							<span class="icon-cancel-circle" ng-click="close($index)"></span>
-						</div></td> 
+						</section></td> 
 					 </tr>
 					<tr  ng-repeat = "item in data.active">
 						<td  class="sources">{{item.id}}</td>
@@ -59,19 +59,19 @@
 						<td ng-hide="item.Edit==true;" class="sources" >{{item.cdn_domains.toString()}}</td>
 						<td ng-hide="item.Edit==true;"  class="sources whitelist" >
 							{{item.whitelist}}
-						<div ng-hide="showEditIcons==false">
+						<section ng-hide="showEditIcons==false">
 							<span class="icon-pencil" ng-click="editItem($index)"></span>
 								<span class="icon-bin" ng-click="deleteItem($index)"></span>
 						
 
-						</div></td>
+						</section></td>
 						<td ng-show="item.Edit==true" class="sources" >
 							
 						<input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
 						</td>
 						
 						<td ng-show="item.Edit==true" class="sources">
-										<input type="text" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-change="checkInput(item.feed_url, $index, data.active)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
+							<input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-change="checkInput(item.feed_url, $index, data.active)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
 						</td>
 						<td ng-show="item.Edit==true" class="sources">
 						<input type="text" ng-model="item.domain" placeholder="Domain" value="{{item.domain}}"/>
@@ -86,18 +86,18 @@
 								<span class="icon-checkbox-unchecked blue" ng-hide="item.whitelist==true" ng-model="item.whitelist"  ng-click="changeCheck('whitelist', $index, data.active)"></span>
 								<span class="icon-checkbox-checked blue" ng-hide="item.whitelist==false"  ng-model="item.whitelist" ng-click="changeCheck('whitelist', $index, data.active)"></span>
 
-						<div class="show_icons">
+						<section class="show_icons">
 							<span class="icon-floppy-disk" ng-click="savItem($index)"></span>
 								<span class="icon-cancel-circle" ng-click="noEdit($index, item.id)"></span>
 						
-						</div></td>
+						</section></td>
 
 					</tr>
 
 				</tbody>
 			</table>
-		</div>
+		</section>
 
 	</section>
 
-</div>
+</section>

@@ -135,7 +135,7 @@ p {
 			.view a{text-decoration:none;}
 			.view.off, .view.off a{color:#b2b2b2; }
 			.view.on, .view.on a{color:#6E8CAE}
-div.buttons_holder{
+section.buttons_holder{
 	margin:1%;
 	margin-top:75px;
 	width:100%;
@@ -147,26 +147,26 @@ div.buttons_holder{
 	
 	
 }
-	div.button{
+	section.button{
 		border: 1px dotted #b2b2b2;
 	  	padding:5px;
 	  	float:left;
 	  	
 		}
-		div .button.on{
+		section .button.on{
 			background:#6E8CAE;
 			
 		}
-		div .button.off{
+		section .button.off{
 		background:#ffffff;
 		
 		}
-		div .button.on a{
+		section .button.on a{
 			color: #ffffff;
 			text-decoration:none; 
 			
 			}
-		div .button.off a{
+		section .button.off a{
 			color:#6E8CAE;
 			text-decoration:none; 
 		}
@@ -797,7 +797,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.source .button--read div {
+.source .button--read section {
   width: 100%;
   height: 100%;
   line-height: 3rem;
@@ -807,7 +807,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.source .button--read div:hover {
+.source .button--read section:hover {
   cursor: pointer; }
 
 .source .button--read:hover {
@@ -848,7 +848,7 @@ div.buttons_holder{
   user-select: none;
   margin: 1.25rem 0; }
 
-.source .button--toggle-content div {
+.source .button--toggle-content section {
   width: 100%;
   height: 100%;
   line-height: 3rem;
@@ -858,7 +858,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.source .button--toggle-content div:hover {
+.source .button--toggle-content section:hover {
   cursor: pointer; }
 
 .source .button--toggle-content:hover {
@@ -898,7 +898,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.source .button--toggle-content.disabled div {
+.source .button--toggle-content.disabled section {
   width: 100%;
   height: 100%;
   line-height: 3rem;
@@ -908,7 +908,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.source .button--toggle-content.disabled div:hover {
+.source .button--toggle-content.disabled section:hover {
   cursor: pointer; }
 
 .source .button--toggle-content.disabled:hover {
@@ -918,7 +918,7 @@ div.buttons_holder{
   transition: 0.2s ease all;
   cursor: pointer; }
 
-.source .button--toggle-content.disabled ~ div.source__commentary {
+.source .button--toggle-content.disabled ~ section.source__commentary {
   display: none !important; }
 
 .source__commentary {
@@ -1200,7 +1200,7 @@ div.buttons_holder{
   -ms-flex-order: 2;
   order: 2; }
 
-.commentary--main .button--expand__extra div {
+.commentary--main .button--expand__extra section {
   width: 100%;
   height: 100%;
   line-height: 3rem;
@@ -1210,7 +1210,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.commentary--main .button--expand__extra div:hover {
+.commentary--main .button--expand__extra section:hover {
   cursor: pointer; }
 
 .commentary--main .button--expand__extra:hover {
@@ -1220,7 +1220,7 @@ div.buttons_holder{
   transition: 0.2s ease all;
   cursor: pointer; }
 
-.commentary--main .button--expand__extra div {
+.commentary--main .button--expand__extra section {
   margin-top: -2px; }
 
 .commentary--main .button--expand__extra:hover {
@@ -1353,7 +1353,7 @@ div.buttons_holder{
   order: 3;
   margin-top: 1.25rem; }
 
-.commentary--main .commentary__publish div {
+.commentary--main .commentary__publish section {
   width: 100%;
   height: 100%;
   line-height: 3rem;
@@ -1363,7 +1363,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.commentary--main .commentary__publish div:hover {
+.commentary--main .commentary__publish section:hover {
   cursor: pointer; }
 
 .commentary--main .commentary__publish:hover {
@@ -1400,7 +1400,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.commentary--main .commentary__publish.active div {
+.commentary--main .commentary__publish.active section {
   width: 100%;
   height: 100%;
   line-height: 3rem;
@@ -1410,7 +1410,7 @@ div.buttons_holder{
   -ms-user-select: none;
   user-select: none; }
 
-.commentary--main .commentary__publish.active div:hover {
+.commentary--main .commentary__publish.active section:hover {
   cursor: pointer; }
 
 .commentary--main .commentary__publish.active:hover {
@@ -1915,21 +1915,21 @@ table {
 		td a, ca-rd a{color:#6E8CAE}
 		ca-rd .col-md-3.blue a{color:#cccccc}
 		ca-rd .col-md-3.blue a:hover{color:#ffffff}
-		td div.check{margin-right:50%;}
+		td section.check{margin-right:50%;}
 		td.whitelist input{width: 50%;}
-		td.whitelist div{float:right; margin-top:0; display:block;}
-		td.whitelist div span{font-size:2rem;}
-		tr:hover td.whitelist div{display:block}
+		td.whitelist section{float:right; margin-top:0; display:block;}
+		td.whitelist section span{font-size:2rem;}
+		tr:hover td.whitelist section{display:block}
 		tr:hover td.whitelist{vertical-align: top}
 		
-		tr td.whitelist div.show_icons{display:block}
+		tr td.whitelist section.show_icons{display:block}
 		td.edit_form{word-wrap:normal;white-space:nowrap; border:none; background:white;}
 
-			td div{margin-top:20px;; color:#6E8CAE; display:none; }
-			td div span, ca-rd span{margin-right:5px; font-size:1.75rem;}
+			td section{margin-top:20px;; color:#6E8CAE; display:none; }
+			td section span, ca-rd span{margin-right:5px; font-size:1.75rem;}
 	
 			
-	div .row{margin:0; }	
+	section .row{margin:0; }	
 	a{color:white; text-decoration:underline}			 
 	ca-rd.contexts .col-md-3{height:400px; overflow-y:auto }
 	ca-rd.sources .col-md-3{height:270px; overflow-y:auto}
@@ -2015,7 +2015,7 @@ padding:0;
 	.row .col-md-3, .row .col-md-2{margin:1%;}		
 	.row .col-md-3{width:31%; }
 	article h2{padding-top:4%}	 
-	tr td.whitelist div{display:block}
+	tr td.whitelist section{display:block}
 	ca-rd.contexts .col-md-3{height:420px; overflow-y:auto }
 	ca-rd.sources .col-md-3{height:300px; overflow-y:auto}
 
@@ -2024,7 +2024,7 @@ padding:0;
 .row .col-md-3, .row .col-md-2{margin:1%;}		
 	.row .col-md-3{width:48%; }	
 	article h2{padding-top:4.5%}
-	tr td.whitelist div{display:block}
+	tr td.whitelist section{display:block}
 }
 
 @media screen and  (max-width: 640px) and (min-width:480px){
@@ -2032,7 +2032,7 @@ padding:0;
 	.row .col-md-3{width:98%;}	 
 	.nav--global{text-align:left; padding-left: 2%;}
 	
-	tr td.whitelist div{display:block}
+	tr td.whitelist section{display:block}
 	.action_buttons{float:right; font-size:1.7em; padding-right: 2%;color:#6E8CAE}
 	ca-rd.contexts .col-md-3{height:370px; overflow-y:auto }
 	ca-rd.sources .col-md-3{height:240px; overflow-y:auto}
@@ -2042,7 +2042,7 @@ padding:0;
 
 @media screen and  (max-width: 479px) and (min-width:321px){
 	table{width:96%; margin:2%;}
-	div.arrows{display:none;}	
+	section.arrows{display:none;}	
 	.row .col-md-3, .row .col-md-2{margin:1%;}		
 	.row .col-md-3{width:98%;margin-bottom:15px;float:none;}	 
 	article h2{padding-top:8.8%}
@@ -2055,7 +2055,7 @@ padding:0;
 	.buttons_holder{padding-bottom: 0;}
 		
 	.container{margin-top:120px;}
-	tr td.whitelist div{display:block}
+	tr td.whitelist section{display:block}
 	.action_buttons{float:right; font-size:1.6em; padding-right: 3%;color:#6E8CAE}
 	dd, td{font-size:1.45rem;}	
 	ca-rd.contexts .col-md-3{height:410px; overflow-y:auto }
@@ -2064,7 +2064,7 @@ padding:0;
 
 @media screen and (max-width: 320px) {
 table{width:96%; margin:2%;}
-div.arrows{display:none;}	
+section.arrows{display:none;}	
 article h2{padding-top:15%}
 .row .col-md-3{width:98%;margin-bottom:15px;float:none;}
 footer {font-size:.55em; margin-top:2px; margin-bottom:2px;}	
@@ -2073,7 +2073,7 @@ footer {font-size:.55em; margin-top:2px; margin-bottom:2px;}
 .internal_search input{width:95px;}
 .buttons_holder{padding-bottom: 20px;}
 .container{margin-top:125px;}
-tr td.whitelist div{display:block}
+tr td.whitelist section{display:block}
 .action_buttons{float:right; font-size:1.4em; padding-right: 3%;color:#6E8CAE}
 dd, td{font-size:1.45rem;}
 ca-rd.contexts .col-md-3{height:410px; overflow-y:auto }

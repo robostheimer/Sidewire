@@ -51,7 +51,7 @@
 				border-radius: 4px !important;
 			}
 
-			.en-markup-crop-options div div:first-of-type {
+			.en-markup-crop-options section section:first-of-type {
 				margin-left: 0px !important;
 			}
 		</style>
@@ -61,15 +61,15 @@
 		<header class="nav--global"><img src="images/logo-full.png" class="logo">
 		
 		</header>	
-		<div ng-show="postMessage==true" class="post_message">
-			<div class="close" ng-click="postMessage=false"><span class="icon-cancel-circle"></span></div>
-			<div class="close"></div>
-			<div>Your data uploaded successfully</div>
+		<section ng-show="postMessage==true" class="post_message">
+			<section class="close" ng-click="postMessage=false"><span class="icon-cancel-circle"></span></section>
+			<section class="close"></section>
+			<section>Your data uploaded successfully</section>
 			
-		</div>		
-		<div ng-view view-animation style="overflow:hidden" >
+		</section>		
+		<section ng-view view-animation style="overflow:hidden" >
 		
-		</div>
+		</section>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -89,11 +89,12 @@
 		<script src="bower_components/angular-touch/angular-touch.min.js"></script>
 		
 		<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js" type="text/javascript"></script>
+		<script src="js/prototypes.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/services.js"></script>
 		<script src="js/directives.js"></script>
 		<script src="js/controllers.js"></script>
 		<script src="js/filters.js"></script>
-		<script src="js/HelperServices.js"></script>
+		
 	</body>
 </html>

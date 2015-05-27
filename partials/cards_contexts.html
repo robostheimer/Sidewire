@@ -1,16 +1,16 @@
-<div ng-include="'partials/search_buttons.html'"></div>
+<section ng-include="'partials/search_buttons.html'"></section>
 
-<div class="container" id="container" ng-model="viewButtons" >
+<section class="container" id="container" ng-model="viewButtons" >
 
-	<div id="movingBallG" ng-show="loading==true">
-		<div class="movingBallLineG"></div>
-		<div id="movingBallG_1" class="movingBallG"></div>
-	</div>
+	<section id="movingBallG" ng-show="loading==true">
+		<section class="movingBallLineG"></section>
+		<section id="movingBallG_1" class="movingBallG"></section>
+	</section>
 	<!--------Cards View-------------->
 	<section id="nofilter" ng- class="stage">
 
-		<div class="row sources" ng-hide="loading==true" id="unfiltered" ng-hide="loading==true" id="row" >
-			 <div  ng-repeat="item in adder.contexts ">
+		<section class="row sources" ng-hide="loading==true" id="unfiltered" ng-hide="loading==true" id="row" >
+			 <section  ng-repeat="item in adder.contexts ">
 				<ca-rd class="contexts" ng-show="item.show==true" >
 					<dl resize-card  class="col-md-3 new">
 						<dt  >
@@ -21,7 +21,7 @@
 								<label>Name:</label><input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
 							</dd>
 							<dd  class="contexts">
-								<label>Feed Url:</label><input type="text" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index,adder.contexts)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
+								<label>Feed Url:</label><input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index,adder.contexts)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
 							</dd>
 							<dd ng-show="item.Edit==true" class="contexts">
 								<label>Publication</label><input ng-model="item.publication" type="text" placeholder="Publication" value="{{item.publication}}"/>
@@ -61,9 +61,9 @@
 						</dt>
 					</dl>
 			</ca-rd>
-		</div>
-		<div class="clear"></div>
-			<div  ng-repeat ="item in data.active track by $index" >
+		</section>
+		<section class="clear"></section>
+			<section  ng-repeat ="item in data.active track by $index" >
 
 				<ca-rd  class="contexts">
 					<dl resize-card  class="col-md-3 {{item.color}}" ng-hide="item.Edit==true" class="card-text">
@@ -123,7 +123,7 @@
 							</dd>
 							<dd  class="sources">
 							<dd  class="contexts">
-								<label>Feed Url:</label><input type="text" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index,data.active)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
+								<label>Feed Url:</label><input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index,data.active)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
 							</dd>
 							<dd ng-show="item.Edit==true" class="contexts">
 								<label>Publication</label><input ng-model="item.publication" type="text" placeholder="Publication" value="{{item.publication}}"/>
@@ -166,11 +166,11 @@
 					</dl>
 
 				</ca-rd>
-			</div>
+			</seciton>
 
-		</div>
+		</section>
 	</section>
 
-</div>
+</section>
 
-<div class="clear"></div>
+<section class="clear"></section>

@@ -10,8 +10,8 @@ function($scope, SidewireData)
 {
 	
 }])
-.controller('UIController', ['$scope', 'SidewireData', 'Buttons', '$location','HelperFunctions','BrowseSearch','Validate', 
-function($scope, SidewireData, Buttons, $location, HelperFunctions, BrowseSearch, Validate)
+.controller('UIController', ['$scope', 'SidewireData', 'Buttons', '$location','BrowseSearch','Validate', 
+function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 {
 	$scope.loading=true;
 	$scope.navButtons = [{name:'Sources', state:'off',type:'sources', href:'#/sources/table'}, {name:'Contexts', state:'off',type:'contexts', href:'#/contexts/table' }];
@@ -132,7 +132,7 @@ function($scope, SidewireData, Buttons, $location, HelperFunctions, BrowseSearch
 		$scope.adder[$scope.datatype].push({id:$scope.data.active.length+$scope.adder[$scope.datatype].length, name:'', domain:'',parser_class:'', cdn_domains:'', whitelist:false, show:true});
 		
 		}
-		HelperFunctions.goToByScrollTop('row');
+		goToByScrollTop('row');
 	};
 	
 	
@@ -299,7 +299,7 @@ function($scope, SidewireData, Buttons, $location, HelperFunctions, BrowseSearch
 	$scope.createParserClass=function(item)
 	{
 		
-		item.parser_class=item.name.toLowerCase()+'_parser.'+item.name.toUpperCase()+'Parser';
+		item.parser_class=item.name.toLowerCase().replace(/ /g, '_')+'_parser.'+item.name.toUpperCase()+'Parser';
 	};
 	$scope.checkInput = function(str, id, obj){
 		Validate.hasHTTP(str).then(function(data){

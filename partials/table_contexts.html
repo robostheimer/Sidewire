@@ -1,13 +1,13 @@
-<div ng-include="'partials/search_buttons.html'"></div>
+<section ng-include="'partials/search_buttons.html'"></section>
 
-<div class="container" id="container">
+<section class="container" id="container">
 	<!--------List View-------------->
-	<div id="movingBallG" ng-show="loading==true">
-		<div class="movingBallLineG"></div>
-		<div id="movingBallG_1" class="movingBallG"></div>
-	</div>
+	<section id="movingBallG" ng-show="loading==true">
+		<section class="movingBallLineG"></section>
+		<section id="movingBallG_1" class="movingBallG"></section>
+	</section>
 	<section id="nofilter-list"  class="stage" >
-		<div id= "unfiltered-table" ng-hide="loading==true" id="row">
+		<section id= "unfiltered-table" ng-hide="loading==true" id="row">
 
 			<table>
 				<thead>
@@ -33,7 +33,7 @@
 						<input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
 						</td>
 						<td  class="contexts" >
-							<input type="text" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index,adder.contexts)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span></td>
+							<input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index,adder.contexts)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span></td>
 						<td  class="contexts">
 						<input type="text" placeholder="Publication" ng-model="item.publication" value="{{item.publication}}"/>
 						</td>
@@ -65,11 +65,11 @@
 						</td>
 						<td  class="contexts whitelist">
 						<input type="text" placeholder="CDN-Domains" value="{{item.cdn_domains.toString()}}"/>
-						<div class="show_icons">
+						<section class="show_icons">
 							<span class="icon-floppy-disk" ng-click="savItem($index, 'new')"></span>
 								<span class="icon-cancel-circle" ng-click="close($index)"></span>
 							
-						</div>
+						</section>
 						</td>
 
 					 </tr>	
@@ -92,12 +92,12 @@
 							{{item.twitter_whitelist}}
 						</td>
 						<td ng-hide="item.Edit==true;"  class="contexts whitelist" >{{item.cdn_domains.toString()}}
-						<div ng-hide="showEditIcons==false">
+						<section ng-hide="showEditIcons==false">
 							<span class="icon-pencil" ng-click="editItem($index)"></span>
 								<span class="icon-bin" ng-click="deleteItem($index)"></span>
 						
 
-						</div></td>
+						</section></td>
 
 						
 
@@ -105,7 +105,7 @@
 						<input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
 						</td>
 						<td  ng-show="item.Edit==true" class="contexts" >
-							<input type="text" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index, data.active)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span></td>
+							<input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  ng-change="checkInput(item.feed_url, $index, data.active)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span></td>
 						<td ng-show="item.Edit==true" class="contexts">
 						<input type="text" placeholder="Publication" ng-model="item.publication" value="{{item.publication}}"/>
 						</td>
@@ -136,19 +136,19 @@
 						</td>
 						<td ng-show="item.Edit==true" class="contexts whitelist">
 						<input type="text" placeholder="CDN-Domains" value="{{item.cdn_domains.toString()}}"/>
-						<div class="show_icons">
+						<section class="show_icons">
 							<span class="icon-floppy-disk" ng-click="savItem($index)"></span>
 								<span class="icon-cancel-circle" ng-click="noEdit($index, item.id)"></span>
 							
-						</div>
+						</section>
 						</td>
 
 					</tr>
 
 				</tbody>
 			</table>
-		</div>
+		</section>
 
 	</section>
 
-</div>
+</section>
