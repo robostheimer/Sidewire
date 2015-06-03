@@ -7,28 +7,24 @@
 		<section class="movingBallLineG"></section>
 		<section id="movingBallG_1" class="movingBallG"></section>
 	</section>
-	<section id="nofilter-list"  class="stage" >
-		<section id= "unfiltered-table" ng-hide="loading==true" id="row" >
+	<section id="nofilter-list"  class="stage" id="stage" >
+		<section id= "table" ng-hide="loading==true" id="row" >
 
 			<table>
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Id</th>
-						<th>FeedUrl</th>
-						<th>Domain</th>
-						<th>Parser-Class</th>
-						<th>CDN-Domains</th>
-						<th>Whitelist</th>
+				<thead >
+					
+					<tr >
+						<th  ng-repeat="item in active_types">{{item.typey.replace('_', ' ').toTitleCase()}}</th>
+						
 					</tr>
 				</thead>
 				<tbody>
 					 <tr ng-show="item.show=true" ng-repeat="item in adder.sources  track by $index">
-					 	<td  class="sources">{{item.id}}</td>
+					 
 					 	<td class="sources" >
 						<input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
 						</td>
-						
+							<td  class="sources">{{item.id}}</td>
 						<td  class="sources">
 							<input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url"  value="{{item.feed_url}}" ng-change="checkInput(item.feed_url, $index, adder.sources)" ng-delay="700"/><span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
 						</td>
@@ -50,9 +46,10 @@
 							<span class="icon-cancel-circle" ng-click="close($index)"></span>
 						</section></td> 
 					 </tr>
-					<tr  ng-repeat = "item in data.active">
-						<td  class="sources">{{item.id}}</td>
+					<tr  ng-repeat = "item in data.active track by $index">
+						
 						<td ng-hide="item.Edit==true;" class="sources">{{item.name}} </td>
+						<td  class="sources">{{item.id}}</td>
 						<td ng-hide="item.Edit==true;" class="sources url"><a href="{{item.feed_url}}" target="_blank">{{item.feed_url}}</a></td>
 						<td ng-hide="item.Edit==true;"  class="sources" >{{item.domain}}</td>
 						<td ng-hide="item.Edit==true;" class="sources" >{{item.parser_class}}</td>

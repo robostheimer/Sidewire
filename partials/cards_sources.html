@@ -8,13 +8,13 @@
 		<section id="movingBallG_1" class="movingBallG"></section>
 	</section>
 	<!--------Cards View-------------->
-	<section id="nofilter" ng-  class="stage">
+	<section id="table" ng-  class="stage" id='stage'>
 
-		<section class="row sources" ng-hide="loading==true" id="unfiltered" ng-hide="loading==true" id="row">
-			 <section  ng-repeat="item in adder.sources  track by $index">
-				<ca-rd class="sources" ng-show="item.show==true">
-					<dl resize-card  class="col-md-3 new">
-						<dt class="card-text"  class="sources" >
+		<section id="row">	
+		
+			
+					<dl resize-card  class="col-md-3 new sources" ng-repeat="item in adder.sources  track by $index"  id="row">
+						<dt class="card-text"   >
 							<dd>
 								<label>Name:</label>
 								<input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
@@ -49,72 +49,69 @@
 						</dt>
 
 					</dl>
-				</section>
-			<section class="clear"></section>
-			<section  ng-repeat ="item in data.active">
+				
+			
+			
 
-				<ca-rd class="sources">
-					<dl resize-card  class="col-md-3 {{item.color}}" ng-hide="item.Edit==true">
-						<dt  class="card-text">
-							<dd>
+				
+					<dl ng-repeat ="item in data.active track by $index" resize-card  class="col-md-3 sources" >
+						<dt class="card-text">
+							<dd ng-hide="item.Edit==true">
 								Name: {{item.name}}
 							</dd>
-							<dd>
+							<dd ng-hide="item.Edit==true">
 								ID: {{item.id}}
 							</dd>
-							<dd>
+							<dd ng-hide="item.Edit==true">
 								Feed URL: <a href="{{item.feed_url}}" target="_blank">{{item.feed_url}}</a>
 							</dd>
-							<dd>
+							<dd ng-hide="item.Edit==true">
 								Domain: {{item.domain}}
 							</dd>
 							<dd>
 								Parser-Class: {{item.parser_class}}
 							</dd>
-							<dd>
+							<dd ng-hide="item.Edit==true">
 								CDN-Domains: {{item.cdn_domains.toString();}}
 							</dd>
-							<dd>
+							<dd ng-hide="item.Edit==true">
 								Whitelist: 
 								{{item.whitelist}}
 							</dd>
-							<dd class="card-button" >
+							<dd class="card-button" ng-hide="item.Edit==true">
 								<span class="icon-pencil" ng-click="editItem($index)"></span>
 								<span class="icon-bin" ng-click="deleteItem($index)"></span>
 						
 							</dd>
-						</dt>
-					</dl>
-					<dl resize-card  class="col-md-3 {{item.color}}"  ng-show="item.Edit==true">
-						<dt class="card-text"  class="sources" >
-							<dd  ng-show="item.Edit==true;" class="sources">
+						
+							<dd  ng-hide="item.Edit==false" class="sources">
 								<label>Name:</label>
 								<input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
 							</dd>
-							<dd ng-show="item.Edit==true;" class="sources">
+							<dd ng-hide="item.Edit==false" class="sources">
 								<label>Id:</label> {{item.id}}
 							</dd>
-							<dd  ng-show="item.Edit==true;"  class="sources">
+							<dd  ng-hide="item.Edit==false"  class="sources">
 								<label>Feed Url:</label><input type="url" ng-model="item.feed_url" placeholder="Feed Url" ng-model="item.feed_url" ng-change="checkInput(item.feed_url, $index, data.active)" value="{{item.feed_url}}" ng-blur="createDomain(item.feed_url, item)"  />
 								<span class="red" ng-hide="item.httpThere==true">*Please add a properly formatted url.</span>
 							</dd>
-							<dd  class="sources">
+							<dd  ng-hide="item.Edit==false" class="sources">
 								<label>Domain:</label> <input type="text" ng-model="item.domain" placeholder="Domain" value="{{item.domain}}"/>
 							</dd>
-							<dd  class="sources">
+							<dd  ng-hide="item.Edit==false" class="sources">
 								<label>Parser Class:</label> <input type="text" ng-model="item.parser_class" placeholder="Parser Class" value="{{item.parser_class}}"/>
 							</dd>
-							<dd  class="sources">
+							<dd ng-hide="item.Edit==false" class="sources">
 								<label>CDN-Domains:</label> <input type="text" ng-model="item.cdn_domains" placeholder="CDN-Domains" value="{{item.cdn_domains.toString()}}"/>
 							</dd>
-							<dd  class="whitelist" ng-click="changeCheck('whitelist', $index, data.active)">
+							<dd ng-hide="item.Edit==false" class="whitelist" ng-click="changeCheck('whitelist', $index, data.active)">
 								<label>Whitelist</label>
 								
 								<span class="icon-checkbox-unchecked blue" ng-hide="item.whitelist==true" ng-model="item.whitelist"></span>
 								<span class="icon-checkbox-checked blue" ng-hide="item.whitelist==false"  ng-model="item.whitelist"></span>
 								<!--<input type="text" placeholder="Whitelist" pattern="true|True|false|False|T|F" value="{{item.whitelist}}"/>-->
 							</dd>
-							<dd class="card-button">
+							<dd ng-hide="item.Edit==false" class="card-button">
 								<span class="icon-floppy-disk" ng-click="savItem($index)"></span>
 								<span class="icon-cancel-circle" ng-click="noEdit($index, item.id)"></span>
 						
@@ -122,12 +119,11 @@
 						</dt>
 
 					</dl>
-				</ca-rd>
 			</section>
 
 		</section>
-	</section>
 
 </section>
+
 
 <section class="clear"></section>

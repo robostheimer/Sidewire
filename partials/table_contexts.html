@@ -6,28 +6,19 @@
 		<section class="movingBallLineG"></section>
 		<section id="movingBallG_1" class="movingBallG"></section>
 	</section>
-	<section id="nofilter-list"  class="stage" >
-		<section id= "unfiltered-table" ng-hide="loading==true" id="row">
-
-			<table>
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Name</th>
-						<th>FeedUrl</th>
-						<th>Publication</th>
-						<th>Domain</th>
-						<th>Parser-Class</th>
-						<th>Pas</th>
-						<th>Pas Std</th>
-						<th>Twitter Handle</th>
-						<th>Article Whitelist</th>
-						<th>Twitter Whitelist</th>
-						<th>CDN-Domains</th>
+	<section id="nofilter-list"  class="stage" id="stage">
+		<section id= "table" ng-hide="loading==true" id="row">
+			
+			<table >
+				<thead >
+					
+					<tr >
+						<th  ng-repeat="item in active_types">{{item.typey.replace('_', ' ').toTitleCase()}}</th>
+						
 					</tr>
 				</thead>
-				<tbody style="oveflow:auto">
-					 <tr ng-show="item.show=true" ng-repeat="item in adder.contexts  track by $index">
+				<tbody style="oveflow:auto" tr event-delegate="tr td | reOrder(item.active_types);" type="click">
+					 <tr ng-show="item.show=true" ng-repeat="item in adder.contexts  track by $index" >
 					 	<td class="contexts">{{item.id}}</td>
 					 	<td  class="contexts">
 						<input type="text" ng-model="item.name" ng-blur="createParserClass(item)" placeholder="Name" value="{{item.name}}"/>
@@ -64,7 +55,7 @@
 
 						</td>
 						<td  class="contexts whitelist">
-						<input type="text" placeholder="CDN-Domains" value="{{item.cdn_domains.toString()}}"/>
+						<input type="text"  ng-model="item.cdn_domains" placeholder="CDN-Domains" value="{{item.cdn_domains.toString()}}"/>
 						<section class="show_icons">
 							<span class="icon-floppy-disk" ng-click="savItem($index, 'new')"></span>
 								<span class="icon-cancel-circle" ng-click="close($index)"></span>
@@ -73,11 +64,12 @@
 						</td>
 
 					 </tr>	
-					<tr  ng-repeat = "item in data.active">
+					 
+					<tr  ng-repeat = "item in data.active track by $index" >
 
 						<td class="contexts id">{{item.id}}</td>
-						<td ng-hide="item.Edit==true;" class="contexts">{{item.name}}</td>
-						<td ng-hide="item.Edit==true;" class="contexts url"><a href="{{item.feed_url}}" target="_blank">{{item.feed_url}}</a></td>
+						<td ng-hide="item.Edit==true;" class="contexts id" >{{item.name}}</td>
+						<td ng-hide="item.Edit==true;" class="contexts url feed_url"><a href="{{item.feed_url}}" target="_blank">{{item.feed_url}}</a></td>
 						<td ng-hide="item.Edit==true;"  class="contexts" >{{item.publication}}</td>
 						<td ng-hide="item.Edit==true;"  class="contexts" >{{item.domain}}</td>
 						<td ng-hide="item.Edit==true;" class="contexts" >{{item.parser_class}}</td>
@@ -91,7 +83,7 @@
 						<td ng-hide="item.Edit==true;"  class="contexts"  >
 							{{item.twitter_whitelist}}
 						</td>
-						<td ng-hide="item.Edit==true;"  class="contexts whitelist" >{{item.cdn_domains.toString()}}
+						<td ng-hide="item.Edit==true;"  class="contexts whitelist"   ng-model="item.cdn_domains">{{item.cdn_domains.toString()}}
 						<section ng-hide="showEditIcons==false">
 							<span class="icon-pencil" ng-click="editItem($index)"></span>
 								<span class="icon-bin" ng-click="deleteItem($index)"></span>

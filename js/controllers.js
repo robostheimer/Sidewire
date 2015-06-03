@@ -23,22 +23,17 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 	$scope.adder={contexts:[], sources:[], active:[]};
 	
 	
-	if(jQuery.isEmptyObject($scope.data))
+	if(jQuery.isEmptyObject(localStorage.data))
 	{
 		$scope.data = {contexts:[], sources:[], active:[]};
+		$scope.dataSans={contexts:[], sources:[], active:[]};
 		SidewireData.getContextsData().then(function(data){
 			$scope.data.contexts =data.data.contexts;
 			$scope.data.contexts.forEach(function(item){
 			$scope.data.contexts.httpThere=true;	
-		
+			
 			var x= data.data.contexts.indexOf(item);
-					if(x%2==0)
-					{
-						item.color = "blue";
-					}
-					else{
-						item.color="gray"
-					}	
+					
 			
 			});
 			SidewireData.getSourcesData().then(function(data){
@@ -46,31 +41,49 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 				$scope.data.sources.forEach(function(item){
 				var y= $scope.data.sources.indexOf(item);
 				$scope.data.sources.httpThere=true;
-					if(y%2==0)
-					{
-						item.color = "blue";
-					}
-					else{
-						item.color="gray"
-					}	
+					
 			
 				});
 				$scope.loading=false;
 				$scope.data.active=$scope.data[$scope.datatype];
 				
+				
 				///////////Deep copy so if you are editing a Card/Row and you click the close btn, it goes back to the original.///////////////
 				
-				 //$scope.holder=angular.copy($scope.data.active);
+				$scope.dataCopy = {sources:angular.copy($scope.data.sources), contexts:angular.copy($scope.data.contexts)};
+				$scope.dataCopy.contexts = $scope.dataCopy.contexts.removeKeyVals(['Edit', 'httpThere', 'color']);
+				$scope.dataCopy.sources=$scope.dataCopy.sources.removeKeyVals(['Edit', 'httpThere', 'color']);
+				$scope.types={contexts:Object.keys($scope.dataCopy.contexts[0]),sources:Object.keys($scope.dataCopy.sources[0])} ;
+				
+				$scope.active_types =[];
+				$scope.types[$scope.datatype].forEach(function(item){
+			 	$scope.active_types.push({typey:item, state:'off'});
+			 	});
+				
 								
 			});
 		});
 	}
 	else{
-		
+			$scope.keys=[];
+			$scope.data = jQuery.parseJSON(localStorage.data);
 			$scope.data.active=$scope.data[$scope.datatype];
-			//$scope.holder = angular.copy($scope.data.active);
+			$scope.dataCopy = jQuery.parseJSON(localStorage.dataCopy)
 			
-				
+			$scope.loading=false;
+			//$scope.holder = angular.copy($scope.data.active);
+			$scope.types={contexts:Object.keys($scope.dataCopy.contexts[0]),sources:Object.keys($scope.dataCopy.sources[0])} ;
+			
+			
+			
+			
+			$scope.active_types =[];
+			$scope.types[$scope.datatype].forEach(function(item){
+			 	$scope.active_types.push({typey:item, state:'off'});
+			 });
+			console.log($scope.active_types)
+			
+			
 		}
 	
 	
@@ -102,14 +115,16 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 	{
 		Buttons.changeButton($scope.viewButtons, type);
 	};
+	
 	$scope.controlSort=function(type)
 	{
-		Buttons.changeButton($scope.sortButtons, type);
-	};
-	$scope.controlSort=function(type,data)
-	{
-		Buttons.changeButton($scope.sortButtons, type);
-		Buttons.changeOrder($scope.data[data], 'name', type, 'str')
+		Buttons.toggle($scope.sortButtons,type);
+		$scope.active_types.forEach(function(item){
+			item.state='off'
+			
+			
+		});
+		
 	};
 	$scope.changeCheck = function(property, id, arr)
 	{
@@ -132,7 +147,7 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 		$scope.adder[$scope.datatype].push({id:$scope.data.active.length+$scope.adder[$scope.datatype].length, name:'', domain:'',parser_class:'', cdn_domains:'', whitelist:false, show:true});
 		
 		}
-		goToByScrollTop('row');
+		goToByScrollTop('stage');
 	};
 	
 	
@@ -160,11 +175,17 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 			else{
 				var deleted = []
 			}
+			console.log($scope.data.active[index])
+			
 			deleted.push($scope.data.active[index])
 			localStorage.deleted=JSON.stringify(deleted);
+			
 			$scope.data.active.splice(index, 1);
+			$scope.dataCopy[$scope.datatype].splice(index, 1);
 			$scope.data[$scope.datatype]=$scope.data.active;
-			localStorage[$scope.datatype]=JSON.stringify($scope.data.active);
+	
+			localStorage.setItem('data',JSON.stringify($scope.data));
+			localStorage.setItem('dataCopy',JSON.stringify($scope.dataCopy))
 	};
 	$scope.editItem = function(index,id)
 	{	
@@ -198,6 +219,7 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 		{
 			///////////////////NEED TO ADD VALIDATION to make sure field are filled out i.e. that values do not == ''//////////////////
 			Validate.isEmpty($scope.adder[$scope.datatype][id]).then(function(data){
+				console.log(data)
 				if(data==true){
 					alert('Please fill out all fields');
 				}
@@ -205,16 +227,14 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 					Validate.hasHTTP($scope.adder[$scope.datatype][id].feed_url).then(function(data){
 					if(data==true)
 					{						
-					if(id%2==0)
-						{
-							$scope.adder[$scope.datatype][id].color='blue'
-						}
-						else{
-							$scope.adder[$scope.datatype][id].color='gray'
-						}
+					
 						$scope.data.active.push($scope.adder[$scope.datatype][id]);
-						localStorage.setItem($scope.datatype, JSON.stringify($scope.data.active));
-						$scope.runPost($scope.data);	
+						$scope.dataCopy.contexts = angular.copy($scope.data.contexts);
+						$scope.dataCopy.sources=angular.copy($scope.data.sources);
+						$scope.dataCopy.contexts = $scope.dataCopy.contexts.removeKeyVals(['Edit', 'httpThere', 'color']);
+						$scope.dataCopy.sources=$scope.dataCopy.sources.removeKeyVals(['Edit', 'httpThere', 'color']);
+						$scope.adder[$scope.datatype][id].Edit=false;
+						$scope.runPost();	
 						$scope.close(id);
 						
 					}
@@ -229,10 +249,15 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 		}
 		else{
 			Validate.hasHTTP($scope.data.active[id].feed_url).then(function(data){
+					console.log(data)
 					if(data==true)
 					{						
 						$scope.data.active[id].Edit=false;
-						$scope.runPost($scope.data);	
+						$scope.dataCopy.contexts = angular.copy($scope.data.contexts);
+						$scope.dataCopy.sources=angular.copy($scope.data.sources);
+						$scope.dataCopy.contexts = $scope.dataCopy.contexts.removeKeyVals(['Edit', 'httpThere', 'color']);
+						$scope.dataCopy.sources=$scope.dataCopy.sources.removeKeyVals(['Edit', 'httpThere', 'color']);
+						$scope.runPost();	
 					}
 					else{
 						alert('Please make sure you are using a valid web address that includes http:// or https://')
@@ -245,13 +270,14 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 	};	
 	
 	
-	$scope.runPost=function(data)
+	$scope.runPost=function()
 	{
-		
+
 		////////////Adds full data (sources and contexts) to localStorage object called data//////////
-		localStorage.setItem('data', JSON.stringify($scope.data));
+		localStorage.setItem('dataCopy', JSON.stringify($scope.dataCopy));
+		localStorage.setItem('data', JSON.stringify($scope.data))
 		/////example post to local php file; responds with data in console////////
-		SidewireData.runPost(data);
+		SidewireData.runPost($scope.dataCopy);
 	};
 	
 
@@ -261,6 +287,10 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 		if($scope.showJSON==false || $scope.showJSON==undefined)
 		{
 		$scope.showJSON=true;
+		var data=$scope.dataCopy;
+		var finaldata = {contexts:[], sources:[]};
+		finaldata.contexts = data.contexts.removeKeyVals(['Edit', 'httpThere', 'color']);
+		finaldata.sources=data.sources.removeKeyVals(['Edit', 'httpThere', 'color']);
 		}else
 		{
 			$scope.showJSON=false;
@@ -308,8 +338,41 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 		
 		
 	};
+	$scope.reOrder = function(id, type, button){
+		
+		$scope.active_types.forEach(function(item){
+			
+			if(id.typey==item.typey)
+			{
+				console.log(id.typey)
+				item.state='on';
+			}
+			else{
+				item.state='off';
+			}
+		});
+		
+		if(type=='dsc')
+		{
+		$scope.data.active=$scope.data.active.SortObjDsc(id.typey.toLowerCase(), 'str', id);
+		$scope.data[$scope.datatype]=$scope.data.active;
+		$scope.dataCopy[$scope.datatype]=$scope.dataCopy[$scope.datatype].SortObjDsc(id.typey.toLowerCase(), 'str', id);
+		
+		}
+		else{
+		$scope.data.active=$scope.data.active.SortObjAsc(id.typey.toLowerCase(), 'str', id);
+		$scope.data[$scope.datatype]=$scope.data.active;
+		$scope.dataCopy[$scope.datatype]=$scope.dataCopy[$scope.datatype].SortObjAsc(id.typey.toLowerCase(), 'str', id);	
+		
+		}
+		localStorage.setItem('dataCopy', JSON.stringify($scope.dataCopy));
+		localStorage.setItem('data', JSON.stringify($scope.data))	
+	};
+
+	
 		$scope.changeState($scope.datatype);
 		$scope.controlViews($scope.template)
+	
 	
 	
 }]);

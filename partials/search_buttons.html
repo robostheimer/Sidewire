@@ -10,21 +10,27 @@
 
 	<section class="clear"></section>
 	<section>
-		<section  ng-repeat ="item in sortButtons" class="view {{item.state}}" ng-click="controlSort(item.type,datatype)" >
-			<span class="icon-{{item.name}}"></span>
+		<section  ng-repeat ="item in sortButtons" class="view {{item.state}}"  >
+			<span class="icon-{{item.name}}" ng-click="controlSort(item.type,datatype)"></span>
+			<section class="sortby"> 
+				<ul class="{{item.type}}" event-delegate="li | reOrder(active, item.type, item);"  type="click" >
+					<li ng-repeat="active in active_types" class="{{active.state}}"><a >{{active.typey.replace('_', ' ').toTitleCase()}}</a></li>
+				</ul> 
+			</section>
 		</section>
 		<section  ng-repeat ="item in viewButtons" class="view {{item.state}}" ng-click="controlViews(item.type)" >
-			<a href="{{item.href}}"<span class="icon-{{item.name}}"></span></a>
+			<a href="{{item.href}}"><span class="icon-{{item.name}}"></span></a>
+			
 		</section>
 		
 	</section>
 
 </section>
-<section class="buttons_holder"  >
+<section class="buttons_holder" >
 	<section ng-repeat="item in navButtons"  class="button {{item.state}}" ng-click="changeState(item.name)">
 		<a href="{{item.href}}">{{item.name}}</a>
 	</section>
-	<section class="action_buttons"  download-button data="{{data}}">
+	<section class="action_buttons"  download-button data="{{dataCopy}}">
 	</section>
 	<section class="action_buttons"  ng-click ="runPost(data)">
 		<span class="icon-folder-upload"></span>
@@ -37,7 +43,7 @@
 			<section class="close" ng-click="codeToggle()" ><span class="icon-cancel-circle" ></span></section>
 			<section class="close" download-button data={{data}}></section>
 			<pre>
-				{{data}}
+				{{dataCopy}}
 			</pre>
 			
 		</section>

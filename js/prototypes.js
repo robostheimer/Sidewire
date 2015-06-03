@@ -1,4 +1,5 @@
 /****************************String****************************/
+////////reverses a string/////////////
 String.prototype.reverse = function(){
 	str =this;
 	str=str.split('').reverse().join('');
@@ -173,7 +174,19 @@ String.prototype.findThe=function()
 	return str;
 };	 
 /****************************Array****************************/
-
+Array.prototype.removeItem=function(str_ind, item)
+{
+	var array=this;
+	if(str_ind=="ind")
+	{
+		array.splice(item, 1);	
+	}
+	if(str_ind=="str")
+	{
+		array.splice(array.indexOf(item), 1)
+	}
+	return array;
+}
 Array.prototype.SortObjAsc=function(property, num_or_str, checkDupProperty)
  	{
  	var obj=this;	
@@ -199,6 +212,7 @@ Array.prototype.SortObjAsc=function(property, num_or_str, checkDupProperty)
  
 Array.prototype.SortObjDsc=function(property, num_or_str, checkDupProperty)
 	 {
+	 	
 	 	
 	 	var obj = this
 	 	if(num_or_str=='str')
@@ -513,7 +527,7 @@ Array.prototype.searchObjProperties=function(str, properties, checkDupProperty, 
 	 	}
 	  	return finalfilter;
 	 };
-Array.prototype.removeItemsFromArrObj=function(properties, strs, type, checkDupProperty){
+Array.prototype.removeArrObj=function(properties, strs, type, checkDupProperty){
 		var arr=this;
 		if(properties.length==1)
 		{
@@ -541,7 +555,19 @@ Array.prototype.removeItemsFromArrObj=function(properties, strs, type, checkDupP
 		tmpArr = tmpArr.removeDuplicatesArrObj(checkDupProperty, false)
 		return tmpArr;
 	};
+Array.prototype.removeKeyVals =function(properties)	
+{
+	var data = this;
 	
+		data.forEach(function(item){
+			
+			properties.forEach(function(property){
+				delete(item[property]);
+				
+			});
+		});
+		return data;
+};
 Array.prototype.Toggle = function(indiv, property, value1, value2){
 	 		
 	 		///add a map?
@@ -622,7 +648,7 @@ goToByScrollTop=function(id) {
 	
 		id = id.replace("link", "");
 		// Scroll
-		$('#' + id).animate({
+		$('body').animate({
 			scrollTop : 0
 		}, 'slow');
 	

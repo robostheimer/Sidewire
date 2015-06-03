@@ -268,6 +268,7 @@ Sidewire.factory('Buttons', ['$q',function($q){
 		var deferred = $q.defer();
 		
 		nav.forEach(function(item){
+			
 				if(type==item.type)
 				{
 					item.state='on';
@@ -281,7 +282,26 @@ Sidewire.factory('Buttons', ['$q',function($q){
 				deferred.resolve(nav);
 				return deferred.promise;
 		},
-		
+		toggle: function(buttons, type)
+		{
+			buttons.forEach(function(button){
+				
+				if(type == button.type && button.state=='on')
+				{
+					button.state='off';
+					
+				}
+				else if(type ==button.type && button.state=='off'){
+					button.state='on'
+				}
+				else {
+					button.state='off'
+				}
+				
+			});
+			
+			console.log(buttons)
+		},
 		changeOrder: function(data, parameter, asc_or_dsc, str_or_num)
 		{
 			var deferred = $q.defer();
@@ -328,7 +348,7 @@ Sidewire.factory('Validate', ['$q', function($q){
 		var deferred = $q.defer();
 		for(var prop in obj){
 			if(obj[prop]=='' && !prop.match('whitelist')){
-				console.log(obj[prop])
+				console.log(obj)
 				deferred.resolve(true);
 				return deferred.promise;
 				}
