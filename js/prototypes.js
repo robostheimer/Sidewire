@@ -457,8 +457,10 @@ Array.prototype.searchDataMatch = function(str, properties, checkDupProperty)
 			 	array1.forEach(function(item){
 			 		
 			 		if(item!=undefined){
+			 			
 			 			if(JSON.stringify(item).toLowerCase().match(str.toLowerCase()))
 			 			{
+			 				
 			 				newArr.push(item);
 			 			}
 			 		}
@@ -477,7 +479,7 @@ Array.prototype.searchDataMatch = function(str, properties, checkDupProperty)
 				 	}
 		 			array1.forEach(function(item){
 			 		if(item!=undefined){
-			 		
+			 					
 			 					if(JSON.stringify(item).toLowerCase().match(str.toLowerCase()))
 				 				{
 				 					
@@ -490,7 +492,6 @@ Array.prototype.searchDataMatch = function(str, properties, checkDupProperty)
 		 	}
 	 	
 	 	
-	 	newArr =newArr.removeDuplicatesArrObj(checkDupProperty, false);
 	 	obj = {arr:newArr.slice(0,50), fullArr: newArr}
 	 	
 	 	return obj;
@@ -653,3 +654,38 @@ goToByScrollTop=function(id) {
 		}, 'slow');
 	
 	};
+	
+
+/*******************Create DOM Elements*******************/
+
+function elt( name, attributes, str) { 
+		var node = document.createElement( name);
+		 if (attributes) 
+		 {
+		 	attributes.forEach(function(item){
+		 	for (var attr in item){
+		 		
+		 		 if (item.hasOwnProperty( attr)){
+		 		 	
+		 		  node.setAttribute(attr, item[attr]); 
+		 		 
+		 		 }
+		 		} 
+		 		 	});	
+		}
+		 		for (var i = 2; i < arguments.length; i++) 
+		 		{ 
+		 			var child = arguments[ i]; 
+		 			console.log(child)
+		 			if (typeof child == "string"){
+		 				
+		 			 child = document.createTextNode( child); 
+		 			 node.appendChild(child); 
+		 			 }
+		 		}	  
+		
+		return node;
+	}
+		//console.log(elt('section', [{'id':'test'}, {'class':'test'}], 'test'));
+		//document.body.appendChild(elt('section', [{'id':'test'}], 'test'));
+	

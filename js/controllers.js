@@ -10,8 +10,8 @@ function($scope, SidewireData)
 {
 	
 }])
-.controller('UIController', ['$scope', 'SidewireData', 'Buttons', '$location','BrowseSearch','Validate', 
-function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
+.controller('UIController', ['$scope', 'SidewireData', 'Buttons', '$location','BrowseSearch','Validate', '$http',
+function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate, $http)
 {
 	$scope.loading=true;
 	$scope.navButtons = [{name:'Sources', state:'off',type:'sources', href:'#/sources/table'}, {name:'Contexts', state:'off',type:'contexts', href:'#/contexts/table' }];
@@ -81,7 +81,7 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 			$scope.types[$scope.datatype].forEach(function(item){
 			 	$scope.active_types.push({typey:item, state:'off'});
 			 });
-			console.log($scope.active_types)
+			//console.log($scope.active_types)
 			
 			
 		}
@@ -249,7 +249,7 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 		}
 		else{
 			Validate.hasHTTP($scope.data.active[id].feed_url).then(function(data){
-					console.log(data)
+					
 					if(data==true)
 					{						
 						$scope.data.active[id].Edit=false;
@@ -274,9 +274,6 @@ function($scope, SidewireData, Buttons, $location, BrowseSearch, Validate)
 	{
 
 		////////////Adds full data (sources and contexts) to localStorage object called data//////////
-		localStorage.setItem('dataCopy', JSON.stringify($scope.dataCopy));
-		localStorage.setItem('data', JSON.stringify($scope.data))
-		/////example post to local php file; responds with data in console////////
 		SidewireData.runPost($scope.dataCopy);
 	};
 	

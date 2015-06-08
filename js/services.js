@@ -220,10 +220,12 @@ Sidewire.factory('SidewireData',['$http', 'LS','$q','$rootScope','$timeout', fun
 						item.Edit=false;
 			
 						for(var prop in item){
-						if(item[prop]==null){
-							item[prop]='null'
+							if(item.hasOwnProperty(prop)){	
+								if(item[prop]==null){
+									item[prop]='null'
+									}
+								}	
 							}
-						}
 					LS.checkLS(item, data.data.sources)	
 					});
 					
@@ -237,10 +239,12 @@ Sidewire.factory('SidewireData',['$http', 'LS','$q','$rootScope','$timeout', fun
 					item.Edit=false;
 					item.httpThere=true;
 					for(var prop in item){
-						if(item[prop]==null){
-							item[prop]='null'
+						if(item.hasOwnProperty(prop)){
+							if(item[prop]==null){
+								item[prop]='null'
+								}
 							}
-						}
+						}	
 					LS.checkLS(item, data.data.contexts)		
 					});
 					
@@ -249,9 +253,10 @@ Sidewire.factory('SidewireData',['$http', 'LS','$q','$rootScope','$timeout', fun
 			},
 			runPost:function(data){
 			
-				$http.post('php/result.php', data).success(function(response) {
+				$http.post('/php/result.php', data).success(function(response) {
 					console.log(response);
 					$rootScope.postMessage=true;
+					console.log($rootScope.postMessage)
 					$timeout(function() {
 					$rootScope.postMessage=false;
 				}, 5000);

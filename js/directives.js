@@ -157,7 +157,6 @@ Sidewire.directive('downloadButton',  function ($compile) {
  }).directive(
             "eventDelegate",
             function( $parse ) {
-            	console.log('clicked')
             	
                 // I bind the DOM and event handlers to the scope.
                 function link( $scope, element, attributes ) {
